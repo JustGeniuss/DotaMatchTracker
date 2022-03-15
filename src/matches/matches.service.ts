@@ -14,7 +14,9 @@ export class MatchesService {
     private playersService: PlayersService,
     private heroesService: HeroesService,
     @InjectModel(Match.name) private matchModel: Model<Match>
-    ) {}
+    ) {
+      
+    }
 
   countNetWorthDelta(players) {
     return players.reduce(
@@ -73,4 +75,6 @@ export class MatchesService {
     const createdMatch = new this.matchModel(body);
     return createdMatch.save()
   }
+
+  
 }

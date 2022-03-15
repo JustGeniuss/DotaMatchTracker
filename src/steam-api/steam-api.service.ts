@@ -7,7 +7,7 @@ import fetch from "node-fetch";
 export class SteamApiService {
   steamApi;
   constructor() {
-    this.getSteamApi()
+    this.getSteamApi();
     console.log(this.steamApi);
   }
 
@@ -20,18 +20,23 @@ export class SteamApiService {
   }
 
   async getSteamApi() {
-    setInterval(async () => {
     this.steamApi = await (
       await fetch(
         "https://api.steampowered.com/IDOTA2Match_570/GetLiveLeagueGames/v0001/?key=18A5EECA166EE7B52FB2426BA9D18F63"
       )
-    ).json()
-    console.log(this.steamApi);},300);
-    console.log(this.steamApi);
+    ).json();
+    setInterval(async () => {
+      this.steamApi = await (
+        await fetch(
+          "https://api.steampowered.com/IDOTA2Match_570/GetLiveLeagueGames/v0001/?key=18A5EECA166EE7B52FB2426BA9D18F63"
+        )
+      ).json();
+    }, 12312300);
+    
   }
 
   async getOneMatch(id) {
-    const SteamApi = this.steamApi as SteamApi;
+    const SteamApi =  this.steamApi as SteamApi;
     return SteamApi.result.games.find(
       (match) => match.match_id === +id
     ) as Game;
