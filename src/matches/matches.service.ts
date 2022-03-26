@@ -47,8 +47,11 @@ export class MatchesService {
   }
 
   async getSightPlayersInGame(id, side) {
+    const a = (await this.steamApiService.getOneMatch(id) as Game).scoreboard[side].players
+    // console.log(a)
     return (await this.steamApiService.getOneMatch(id) as Game).scoreboard[side].players
   }
+  
 
   async getMatchId(id) {
     return (await this.steamApiService.getOneMatch(id) as Game).match_id

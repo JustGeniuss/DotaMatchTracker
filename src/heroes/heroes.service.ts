@@ -33,6 +33,7 @@ export class HeroesService {
 
   async getBans(id) {
     const heroes = await this.steamApiService.getAllHeroes();
+    console.log(heroes)
     const arrayOfHeroes = heroes.result.heroes;
     const {
       scoreboard: { radiant, dire },

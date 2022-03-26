@@ -13,8 +13,8 @@ export class MatchesController {
   async getOneMatch(@Param() { id }) {
     await this.matchesService.create({
       matchId: await this.matchesService.getMatchId(id),
-      PlayersRadiant:await this.matchesService.getSightPlayersInGame(id, 'radiant'),
-      PlayersDire:await this.matchesService.getSightPlayersInGame(id, 'dire'), 
+      playersRadiant:await this.matchesService.getSightPlayersInGame(id,'radiant'),
+      playersDire:await this.matchesService.getSightPlayersInGame(id,'dire'), 
       deltaNetworth: await this.matchesService.getDeltaNetworth(id),
       bansRadiant: await this.matchesService.getRadiantBans(id),
       bansDire: await this.matchesService.getDireBans(id),
