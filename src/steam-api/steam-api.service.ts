@@ -28,7 +28,6 @@ export class SteamApiService {
   //   return obj;
   // }
   async getAllHeroes() {
-    console.log(path.join(__dirname, 'steam-Api.json'))
     return (await (
       await fetch(
         "https://api.steampowered.com/IEconDOTA2_570/GetHeroes/v0001/?key=18A5EECA166EE7B52FB2426BA9D18F63"
@@ -37,26 +36,19 @@ export class SteamApiService {
   }
 
   async getSteamApi() {
-    let obj= {}; 
-      await fs.readFile(path.join('dist', 'steam-api',  'steamApi.json'), 'utf8',(err, data) => {
+      await fs.readFile(path.join('src', 'mock',  'steamApi.json'), 'utf8',(err, data) => {
         if (err) throw err;
-        obj = JSON.parse(data)
-        this.steamApi = obj
-    console.log(this.steamApi)
+        this.steamApi = JSON.parse(data)
         return;
       });
     setInterval(async () => {
       
-      await fs.readFile(path.join('dist', 'steam-api',  'steamApi.json'), 'utf8', (err, data) => {
+      await fs.readFile(path.join('src', 'mock',  'steamApi.json'), 'utf8', (err, data) => {
         if (err) throw err;
-        obj = JSON.parse(data)
-        console.log(obj)
-        this.steamApi = obj
-    console.log(this.steamApi)
+        this.steamApi = JSON.parse(data)
         return;
       });
     }, 60000);
-    this.steamApi = obj
   }
 
   async getOneMatch(id) {
